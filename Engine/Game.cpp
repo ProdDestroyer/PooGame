@@ -78,7 +78,7 @@ void Game::UpdateModel()
 		gameStarted = true;
 	}
 }
-
+ 
 void Game::ComposeFrame()
 {
 	if (gameStarted) {
@@ -94,6 +94,7 @@ void Game::ComposeFrame()
 	}
 	else {
 		drawTitle(340, 180);
+		gfx.drawCircle(200, 200, 50);
 	}
 }
 
