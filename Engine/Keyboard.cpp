@@ -1,5 +1,5 @@
-/****************************************************************************************** 
- *	Chili DirectX Framework Version 16.07.20											  *	
+/******************************************************************************************
+ *	Chili DirectX Framework Version 16.07.20											  *
  *	Keyboard.cpp																		  *
  *	Copyright 2016 PlanetChili.net <http://www.planetchili.net>							  *
  *																						  *
@@ -20,14 +20,14 @@
  ******************************************************************************************/
 #include "Keyboard.h"
 
-bool Keyboard::KeyIsPressed( unsigned char keycode ) const
+bool Keyboard::KeyIsPressed(unsigned char keycode) const
 {
 	return keystates[keycode];
 }
 
 Keyboard::Event Keyboard::ReadKey()
 {
-	if( keybuffer.size() > 0u )
+	if (keybuffer.size() > 0u)
 	{
 		Keyboard::Event e = keybuffer.front();
 		keybuffer.pop();
@@ -46,7 +46,7 @@ bool Keyboard::KeyIsEmpty() const
 
 char Keyboard::ReadChar()
 {
-	if( charbuffer.size() > 0u )
+	if (charbuffer.size() > 0u)
 	{
 		unsigned char charcode = charbuffer.front();
 		charbuffer.pop();
@@ -94,32 +94,36 @@ bool Keyboard::AutorepeatIsEnabled() const
 	return autorepeatEnabled;
 }
 
-void Keyboard::OnKeyPressed( unsigned char keycode )
+void Keyboard::OnKeyPressed(unsigned char keycode)
 {
-	keystates[ keycode ] = true;	
-	keybuffer.push( Keyboard::Event( Keyboard::Event::Press,keycode ) );
-	TrimBuffer( keybuffer );
+	keystates[keycode] = true;
+	keybuffer.push(Keyboard::Event(Keyboard::Event::Type::Press, keycode));
+	TrimBuffer(keybuffer);
 }
 
-void Keyboard::OnKeyReleased( unsigned char keycode )
+void Keyboard::OnKeyReleased(unsigned char keycode)
 {
-	keystates[ keycode ] = false;
-	keybuffer.push( Keyboard::Event( Keyboard::Event::Release,keycode ) );
-	TrimBuffer( keybuffer );
+	keystates[keycode] = false;
+	keybuffer.push(Keyboard::Event(Keyboard::Event::Type::Release, keycode));
+	TrimBuffer(keybuffer);
 }
 
-void Keyboard::OnChar( char character )
+void Keyboard::OnChar(char character)
 {
-	charbuffer.push( character );
-	TrimBuffer( charbuffer );
+	charbuffer.push(character);
+	TrimBuffer(charbuffer);
+}
+
+void Keyboard::ClearState()
+{
+	keystates.reset();
 }
 
 template<typename T>
-void Keyboard::TrimBuffer( std::queue<T>& buffer )
+void Keyboard::TrimBuffer(std::queue<T>& buffer)
 {
-	while( buffer.size() > bufferSize )
+	while (buffer.size() > bufferSize)
 	{
 		buffer.pop();
 	}
 }
-

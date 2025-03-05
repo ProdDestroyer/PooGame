@@ -26,11 +26,11 @@ Game::Game(MainWindow& wnd)
 	:
 	wnd(wnd),
 	gfx(wnd),
-	dude(370, 235, 3, 3)
+	dude(Vec2D(370.0f, 235.0f), Vec2D(3.0f*60.0f, 3.0f*60.0f))
 {
 	food.randomizePosition();
 	for (int i = 0; i < size; i++) {
-		poos[i].init(MyUtilities::randomBetween(0, 770), MyUtilities::randomBetween(0, 570), MyUtilities::randomBetween(-3, 3), MyUtilities::randomBetween(-3, 3));
+		poos[i].init(Vec2D((float)MyUtilities::randomBetween(0, 770), (float)MyUtilities::randomBetween(0, 570)),Vec2D((float)MyUtilities::randomBetween(-3*60, 3*60), (float)MyUtilities::randomBetween(-3*60, 3*60)));
 	}
 }
 
@@ -44,26 +44,20 @@ void Game::Go()
 
 void Game::UpdateModel()
 {
+	const float dt = ts.Stamp();
 	if (gameStarted) {
 		if (!dude.isCrashed()) {
-			if (wnd.kbd.KeyIsPressed(VK_UP)) {
-				dude.moveUp();
-			}
-			if (wnd.kbd.KeyIsPressed(VK_DOWN)) {
-				dude.moveDown();
-			}
-			if (wnd.kbd.KeyIsPressed(VK_RIGHT)) {
-				dude.moveRight();
-			}
-			if (wnd.kbd.KeyIsPressed(VK_LEFT)) {
-				dude.moveLeft();
+			if (wnd.mouse.LeftIsPressed()) {
+				Vec2D mousePoint(float(wnd.mouse.GetPosX()), float(wnd.mouse.GetPosY()));
+				Vec2D directionVector = mousePoint - Vec2D(dude.getPos().x + Dude::width / 2, dude.getPos().y + Dude::height / 2);
+				dude.move(directionVector.normalized(), dt);
 			}
 
 			dude.clamp();
 
 			for (int i = 0; i < size; i++) {
 				if (!dude.isCrashed()) {
-					poos[i].move();
+					poos[i].move(dt);
 					dude.setCrashed((MyUtilities::testCollision(dude.getX(), 20, dude.getY(), 20, poos[i].getX(), 24, poos[i].getY(), 24)));
 				}
 			}

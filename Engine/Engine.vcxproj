@@ -151,6 +151,8 @@
     <ClInclude Include="Resource.h" />
     <ClInclude Include="ScoreBar.h" />
     <ClInclude Include="SquaredFood.h" />
+    <ClInclude Include="TimeStamp.h" />
+    <ClInclude Include="Vec2D.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Dude.cpp" />
@@ -165,6 +167,8 @@
     <ClCompile Include="Poo.cpp" />
     <ClCompile Include="ScoreBar.cpp" />
     <ClCompile Include="SquaredFood.cpp" />
+    <ClCompile Include="TimeStamp.cpp" />
+    <ClCompile Include="Vec2D.cpp" />
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="FramebufferPS.hlsl">

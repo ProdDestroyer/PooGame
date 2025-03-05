@@ -1,24 +1,21 @@
 #pragma once
 #include "MyUtilities.h"
 #include "Graphics.h"
+#include "Vec2D.h"
 
 class Dude {
 private:
-	int x;
-	int y;
-	int vx;
-	int vy;
+	Vec2D pos;
+	Vec2D vel;
 	bool crashed = false;
 
 public:
-	Dude(const int x, const int y, const int vx, const int vy);
-	void moveRight();
-	void moveLeft();
-	void moveUp();
-	void moveDown();
+	Dude(const Vec2D& pos, const Vec2D& vel);
+	void move(const Vec2D& direction, const float dt);
 	void clamp();
-	int getX();
-	int getY();
+	float getX();
+	float getY();
+	const Vec2D& getPos() const;
 	void setCrashed(const bool crashed);
 	bool isCrashed() const;
 	void draw(Graphics& gfx) const;

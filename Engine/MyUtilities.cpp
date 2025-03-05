@@ -1,17 +1,17 @@
 #include "MyUtilities.h"
 #include "Graphics.h"
 
-int MyUtilities::clampX(const int x, const int width)
+float MyUtilities::clampX(const float x, const int width)
 {
-	return (x < 0) ? 0 : (x +width > Graphics::ScreenWidth - 1) ? Graphics::ScreenWidth - 1 -width : x;
+	return (x < 0) ? 0 : (x +width > Graphics::ScreenWidth - 1) ? float(Graphics::ScreenWidth - 1 -width) : x;
 }
 
-int MyUtilities::clampY(const int y, const int height)
+float MyUtilities::clampY(const float y, const int height)
 {
-	return (y < 0) ? 0 : (y + height > Graphics::ScreenHeight - 1) ? Graphics::ScreenHeight - 1 - height : y;
+	return (y < 0) ? 0 : (y + height > Graphics::ScreenHeight - 1) ? float(Graphics::ScreenHeight - 1 - height) : y;
 }
 
-bool MyUtilities::testCollision(const int x0, const int width0, const int y0, const int height0, const int x1, const int width1, const int y1, const int height1)
+bool MyUtilities::testCollision(const float x0, const float width0, const float y0, const float height0, const float x1, const float width1, const float y1, const float height1)
 {
 	return x0 < x1 + width1 &&
 		x0 + width0 > x1 &&

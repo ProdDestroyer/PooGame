@@ -2,24 +2,22 @@
 #include "MyUtilities.h"
 #include "Graphics.h"
 #include <assert.h>
+#include "Vec2D.h"
 
 class Poo {
 private:
-
-	int x;
-	int y;
-	int vx;
-	int vy;
+	Vec2D pos;
+	Vec2D vel;
 	bool eaten = false;
 	bool initialized = false;
 
 public:
-
-	void init(const int x, const int y, const int vx, const int vy);
-	int getX();
-	int getY();
-	void move();
+	void init(const Vec2D& pos, const Vec2D& vel);
+	float getX();
+	float getY();
+	void move(const float);
 	void draw(Graphics& gfx) const;
+	const Vec2D& getPos() const;
 
 	static constexpr int width = 24;
 	static constexpr int height = 24;

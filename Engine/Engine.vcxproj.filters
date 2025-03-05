@@ -63,6 +63,12 @@
     <ClInclude Include="ScoreBar.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="TimeStamp.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Vec2D.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="DXErr.cpp">
@@ -99,6 +105,12 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="ScoreBar.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="TimeStamp.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Vec2D.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

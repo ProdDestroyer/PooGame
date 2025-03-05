@@ -28,6 +28,7 @@
 #include "MyUtilities.h"
 #include "SquaredFood.h"
 #include "ScoreBar.h"
+#include "TimeStamp.h"
 
 class Game
 {
@@ -52,6 +53,8 @@ private:
 
 	SquaredFood food;
 	ScoreBar scoreBar;
+
+	TimeStamp ts;
 
 	static constexpr int size = 10;
 	Poo poos[size];
